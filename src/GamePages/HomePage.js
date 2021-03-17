@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class game extends Component {
+export class HomePage extends Component {
     render() {
         return (
             <div>
-                Tic tac toefoshooo
+                Home Page!
             </div>
         )
     }

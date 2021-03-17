@@ -1,27 +1,61 @@
-import logo from './logo.svg';
+
 import './App.css';
-import { Header } from './AuthPages/Header.js'
+import React, { Component } from 'react';
+import {
+  BrowserRouter as Router, 
+  Route, 
+  Switch,
+} from 'react-router-dom';
+import { Header }  from './AuthPages/Header.js'
+import PrivateRoute   from './AuthPages/PrivateRoute.js'
+import { Login } from './AuthPages/Login.js';
+import { SignUp } from './AuthPages/Signup.js'
+import { HomePage } from './GamePages/HomePage.js'
 
-function App() {
-  return (
-    <div className="App">
-      <Header/>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+export default class App extends Component {
+
+
+  render() {
+  
+   
+      return (
+          <div>
+              <Router>
+              <Header/>
+                  <Switch>
+                      <Route 
+                          path="/" 
+                          exact
+                          render={(routerProps) => <HomePage
+                          {...routerProps} />} 
+                      />
+                      <Route 
+                          path="/signup" 
+                          exact
+                          render={(routerProps) => <SignUp {...routerProps} 
+                          handleUserChange={this.handleUserChange}/>} 
+                      />
+                        <Route 
+                          path="/login" 
+                          exact
+                          render={(routerProps) => <Login {...routerProps}
+                          />} 
+                      />
+                       
+                        {/* <PrivateRoute 
+                          path="/myfavorites" 
+                          exact
+                          token={user && user.token}
+                          render={(routerProps) => 
+                          <ApodsFavoritesPage
+                            user={this.state.user}
+                            {...routerProps} />} 
+                      /> */}
+                  </Switch>
+              </Router>
+          </div>
+      )
+  }
 }
-
-export default App;
