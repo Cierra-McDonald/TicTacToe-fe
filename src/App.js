@@ -11,15 +11,24 @@ import PrivateRoute   from './AuthPages/PrivateRoute.js'
 import { Login } from './AuthPages/Login.js';
 import { SignUp } from './AuthPages/Signup.js'
 import { HomePage } from './GamePages/HomePage.js'
+import { addUsertoLocalStorage, getUserFromLocalStorage } from './localStorageUtils';
 
 
 
 export default class App extends Component {
 
+  state = { 
+    user: getUserFromLocalStorage()
+  }
 
+  handleUserChange = (user) => { 
+    this.setState({ user })
+    addUsertoLocalStorage(user);
+
+  }
   render() {
   
-   
+   const { user } = this.state;
       return (
           <div>
               <Router>
@@ -34,8 +43,10 @@ export default class App extends Component {
                       <Route 
                           path="/signup" 
                           exact
-                          render={(routerProps) => <SignUp {...routerProps} 
-                          handleUserChange={this.handleUserChange}/>} 
+                          render={(routerProps) => (
+                          <SignUp
+                           {...routerProps} 
+                          handleUserChange={this.handleUserChange}/>)} 
                       />
                         <Route 
                           path="/login" 
