@@ -26,19 +26,44 @@ export default class App extends Component {
     addUsertoLocalStorage(user);
 
   }
+
+  redirectHome = () => { 
+
+    window.location.replace('/')
+  }
+
+  redirectToSignUp = () => { 
+    window.location.replace('/signup')
+  }
+
+
+
+  handleLogOut = () => { 
+    this.handleUserChange();
+    localStorage.clear();
+    
+    window.location.replace('/login')
+
+  }
+
   render() {
   
    const { user } = this.state;
       return (
           <div>
               <Router>
-              <Header/>
+              <Header
+                handleLogOut={this.handleLogOut}
+                redirectHome={this.redirectHome}
+                redirectToSignUp={this.redirectToSignUp}/>
                   <Switch>
-                      <Route 
+                      <PrivateRoute 
                           path="/" 
                           exact
+                          token={user && user.token}
                           render={(routerProps) => <HomePage
                           {...routerProps} />} 
+                          user={this.state.user}
                       />
                       <Route 
                           path="/signup" 
@@ -47,23 +72,15 @@ export default class App extends Component {
                           <SignUp
                            {...routerProps} 
                           handleUserChange={this.handleUserChange}/>)} 
-                      />
+                        />
                         <Route 
                           path="/login" 
                           exact
-                          render={(routerProps) => <Login {...routerProps}
-                          />} 
-                      />
-                       
-                        {/* <PrivateRoute 
-                          path="/myfavorites" 
-                          exact
-                          token={user && user.token}
-                          render={(routerProps) => 
-                          <ApodsFavoritesPage
-                            user={this.state.user}
-                            {...routerProps} />} 
-                      /> */}
+                          render={(routerProps) => ( 
+                          <Login 
+                          {...routerProps}
+                          handleUserChange={this.handleUserChange}/>)} 
+                         />
                   </Switch>
               </Router>
           </div>

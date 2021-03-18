@@ -51,23 +51,28 @@ export function Login( props ) {
       await setPassword(e.target.value);
 
   };
-
+  
   const handleSubmit = async (e) => { 
       e.preventDefault();
+
+      console.log(email);
+      console.log(password);
      
       try {
           const user = await loginExistingUser(email, password);
           props.handleUserChange(user);
           props.history.push('/');
+          console.log(e);
 
-      } catch(e) {setError(e.response.body.error)
+      } catch(e) {
+          setError(e.response.body.error)
 
       }
       
   };
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <form className={classes.root} noValidate autoComplete="on">
         <h2>Login</h2>
         {error && <h5 style={{color: 'red'}}> {error} </h5>}
       <TextField id="filled-basic" label="Email" variant="filled" onChange={handleEmailChange} />

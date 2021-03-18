@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     verticalAlign: 'center',
     borderStyle: 'solid',
-    borderColor: 'pink',
+    borderColor: 'rgba(229,122,68)',
     width: '25%',
     height: '350px',
     color: 'black',
@@ -73,7 +73,7 @@ export function SignUp( props ) {
       <TextField id="filled-basic" label="Password" variant="filled" onChange={handlePasswordChange} />
       <Button
        variant="contained" 
-       color="secondary"
+       style={{backgroundColor: 'rgba(229,122,68)', color: 'white'}}
        onClick={handleSubmit}>
         SignUp!
         </Button>
