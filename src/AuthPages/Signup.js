@@ -70,7 +70,7 @@ export function SignUp( props ) {
         <h2>Signup</h2>
         {error && <h5 style={{color: 'red'}}> {error} </h5>}
       <TextField id="filled-basic" label="Email" variant="filled" onChange={handleEmailChange} />
-      <TextField id="filled-basic" label="Password" variant="filled" onChange={handlePasswordChange} />
+      <TextField id="filled-basic" label="Password" variant="filled" type="password" onChange={handlePasswordChange} />
       <Button
        variant="contained" 
        style={{backgroundColor: 'rgba(229,122,68)', color: 'white'}}

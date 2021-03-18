@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { loginExistingUser } from '../apiUtilis';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     verticalAlign: 'center',
     borderStyle: 'solid',
-    borderColor: 'pink',
+    borderColor: 'rgba(66,32,64)',
     width: '25%',
     height: '350px',
     color: 'black',
@@ -76,14 +77,14 @@ export function Login( props ) {
         <h2>Login</h2>
         {error && <h5 style={{color: 'red'}}> {error} </h5>}
       <TextField id="filled-basic" label="Email" variant="filled" onChange={handleEmailChange} />
-      <TextField id="filled-basic" label="Password" variant="filled" onChange={handlePasswordChange} />
+      <TextField id="filled-basic" label="Password" variant="filled" type="password" onChange={handlePasswordChange} />
       <Button
        variant="contained" 
-       color="secondary"
+       style={{backgroundColor: 'rgba(66,32,64)', color: 'white'}}
        onClick={handleSubmit}>
         Login!
         </Button>
-     
+     <h5>Not a member? <Link to="/signup">SignUp Here!</Link> </h5>
     </form>
   );
 }
